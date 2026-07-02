@@ -64,7 +64,7 @@ jobs:
     - name: Build Web Application
       run: |
         cd frontend/bhau_fitness_flutter
-        flutter build web --base-href "/BHAU-FITNESS-FLUTTER/"
+        flutter build web --base-href "/BHAU-FITNESS-FLUTTER-/"
 
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/main'
