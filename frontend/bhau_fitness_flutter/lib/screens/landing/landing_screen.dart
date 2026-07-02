@@ -212,7 +212,7 @@ class _LandingScreenState extends State<LandingScreen> {
                         PopupMenuItem(value: _faqKey, child: const Text('FAQ')),
                       ],
                     ),
-                  _HoverColorTextButton(
+                  HoverColorTextButton(
                     label: 'Log In',
                     onPressed: _goLogin,
                     baseColor: BhauColors.ink,
@@ -449,8 +449,8 @@ class _SocialProofToast extends StatelessWidget {
   }
 }
 
-class _HoverColorTextButton extends StatefulWidget {
-  const _HoverColorTextButton({
+class HoverColorTextButton extends StatefulWidget {
+  const HoverColorTextButton({
     required this.label,
     required this.onPressed,
     this.baseColor = BhauColors.muted,
@@ -466,10 +466,10 @@ class _HoverColorTextButton extends StatefulWidget {
   final FontWeight fontWeight;
 
   @override
-  State<_HoverColorTextButton> createState() => _HoverColorTextButtonState();
+  State<HoverColorTextButton> createState() => HoverColorTextButtonState();
 }
 
-class _HoverColorTextButtonState extends State<_HoverColorTextButton> {
+class HoverColorTextButtonState extends State<HoverColorTextButton> {
   bool _isHovered = false;
 
   @override
