@@ -258,7 +258,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ],
           Text(
             "What's your main fitness goal?",
-            style: GoogleFonts.inter(
+            style: GoogleFonts.spaceGrotesk(
               color: BhauColors.muted,
               fontWeight: FontWeight.w600,
               fontSize: 13,
@@ -306,7 +306,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Text(
                           g['label']!,
                           textAlign: TextAlign.center,
-                          style: GoogleFonts.inter(
+                          style: GoogleFonts.spaceGrotesk(
                             fontSize: 9,
                             fontWeight: selected ? FontWeight.w800 : FontWeight.w600,
                             color: selected ? BhauColors.ink : BhauColors.muted,

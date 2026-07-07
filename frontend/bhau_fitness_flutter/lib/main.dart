@@ -11,6 +11,7 @@ import 'screens/member/member_shell.dart';
 
 /// Enables scrolling by mouse drag and trackpad in addition to the default
 /// wheel/touch, so desktop-web visitors can always scroll the page.
+/// Smooth physics custom configuration makes desktop-web scroll beautifully.
 class _AppScrollBehavior extends MaterialScrollBehavior {
   @override
   Set<PointerDeviceKind> get dragDevices => {
@@ -19,6 +20,11 @@ class _AppScrollBehavior extends MaterialScrollBehavior {
         PointerDeviceKind.trackpad,
         PointerDeviceKind.stylus,
       };
+
+  @override
+  ScrollPhysics getScrollPhysics(BuildContext context) {
+    return const BouncingScrollPhysics(parent: AlwaysScrollableScrollPhysics());
+  }
 }
 
 void main() {

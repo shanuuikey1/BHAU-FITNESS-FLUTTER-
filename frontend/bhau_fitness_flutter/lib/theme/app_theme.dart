@@ -28,15 +28,18 @@ class BhauColors {
   );
 }
 
-/// The HTML site's three font roles: Anton for shouty display headlines,
-/// Inter for body copy, Space Mono for eyebrows/stats/mono accents.
+/// The HTML site's three font roles changed to highly modern and futuristic styles:
+/// - Orbitron / Syne: Powerful futuristic geometric headings and futuristic technological touch
+/// - Space Grotesk / Inter: Clean modern tech UI typography
+/// - JetBrains Mono / Space Mono: Crisp futuristic metrics, code tags, or dashboard details.
 class BhauText {
   static TextStyle display({double fontSize = 32, Color color = BhauColors.ink, double? height}) =>
-      GoogleFonts.anton(
+      GoogleFonts.orbitron(
         fontSize: fontSize,
         color: color,
-        height: height ?? 1.12, // Increased from 0.95 to prevent descender/ascender overlap when wrapped
-        letterSpacing: 0.2,
+        fontWeight: FontWeight.extrabold,
+        height: height ?? 1.15,
+        letterSpacing: 1.5, // futuristic sci-fi letter spacing
       );
 
   static TextStyle mono({
@@ -60,7 +63,7 @@ class BhauText {
       );
 
   static TextStyle body({double fontSize = 15, Color color = BhauColors.muted, double height = 1.55}) =>
-      GoogleFonts.inter(fontSize: fontSize, color: color, height: height);
+      GoogleFonts.spaceGrotesk(fontSize: fontSize, color: color, height: height, fontWeight: FontWeight.w400);
 }
 
 /// Reusable decorations matching the HTML's `.glass` / `.card` / gradient-pass
@@ -91,7 +94,7 @@ class BhauDecor {
 
 ThemeData buildBhauTheme() {
   final base = ThemeData.dark(useMaterial3: true);
-  final inter = GoogleFonts.interTextTheme(base.textTheme);
+  final spaceGrotesk = GoogleFonts.spaceGroteskTextTheme(base.textTheme);
 
   return base.copyWith(
     scaffoldBackgroundColor: BhauColors.bg,
@@ -101,7 +104,7 @@ ThemeData buildBhauTheme() {
       surface: BhauColors.bg2,
       error: BhauColors.bad,
     ),
-    textTheme: inter.apply(
+    textTheme: spaceGrotesk.apply(
       bodyColor: BhauColors.ink,
       displayColor: BhauColors.ink,
     ),
@@ -129,22 +132,17 @@ ThemeData buildBhauTheme() {
       floatingLabelStyle: const TextStyle(color: BhauColors.cyan, fontWeight: FontWeight.w600),
       contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
     ),
-    // Buttons mirror the HTML's `.btn` class exactly: Inter at 700 weight /
-    // 15px, 12px corner radius, 24px/14px padding — NOT the Anton display
+    // Buttons mirror the HTML's `.btn` class exactly: SpaceGrotesk at 700 weight /
+    // 15px, 12px corner radius, 24px/14px padding — NOT the display
     // font, and not Material 3's default full-pill (StadiumBorder) shape.
-    // The previous button textStyle omitted a fontFamily, which made button
-    // labels silently fall back to the browser's default font instead of
-    // Inter — the "off" look. Defining all three button themes here means
-    // every ElevatedButton/OutlinedButton/TextButton in the app picks this up
-    // automatically; per-widget `.styleFrom` calls only need to override
-    // colour, not font or shape.
+    // Every ElevatedButton/OutlinedButton/TextButton in the app picks this up automatically.
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: BhauColors.lime,
         foregroundColor: BhauColors.bg,
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 15),
+        textStyle: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 15, letterSpacing: 0.8),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
@@ -153,7 +151,7 @@ ThemeData buildBhauTheme() {
         side: const BorderSide(color: BhauColors.line2),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: GoogleFonts.inter(fontWeight: FontWeight.w700, fontSize: 15),
+        textStyle: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w700, fontSize: 15, letterSpacing: 0.8),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
@@ -161,7 +159,7 @@ ThemeData buildBhauTheme() {
         foregroundColor: BhauColors.cyan,
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        textStyle: GoogleFonts.inter(fontWeight: FontWeight.w600, fontSize: 14),
+        textStyle: GoogleFonts.spaceGrotesk(fontWeight: FontWeight.w600, fontSize: 14, letterSpacing: 0.5),
       ),
     ),
     cardTheme: CardThemeData(
