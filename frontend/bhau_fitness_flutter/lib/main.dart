@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'providers/engagement_provider.dart';
@@ -29,6 +31,10 @@ class _AppScrollBehavior extends MaterialScrollBehavior {
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Enable swift Google Fonts caching, disable network delay checks inside debug compilation on browser view
+  GoogleFonts.config.allowRuntimeFetching = true;
+  
   runApp(const BhauFitnessApp());
 }
 
@@ -101,9 +107,8 @@ class _SplashGateState extends State<SplashGate> with TickerProviderStateMixin {
     await auth.tryAutoLogin();
     
     final elapsed = DateTime.now().difference(startTime);
-    // Show the splash just long enough to not flash (the web loader has
-    // already covered engine startup) — long waits here read as lag.
-    final remaining = const Duration(milliseconds: 1100) - elapsed;
+    // Let autoLogin drive the gate! Reduced heavy delays on Splash Gate for ultra snappy response
+    final remaining = const Duration(milliseconds: 300) - elapsed;
     if (remaining > Duration.zero) {
       await Future.delayed(remaining);
     }
