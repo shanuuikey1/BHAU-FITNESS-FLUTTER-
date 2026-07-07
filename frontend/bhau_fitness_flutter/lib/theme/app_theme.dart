@@ -37,7 +37,7 @@ class BhauText {
       GoogleFonts.orbitron(
         fontSize: fontSize,
         color: color,
-        fontWeight: FontWeight.extrabold,
+        fontWeight: FontWeight.w800,
         height: height ?? 1.15,
         letterSpacing: 1.5, // futuristic sci-fi letter spacing
       );
